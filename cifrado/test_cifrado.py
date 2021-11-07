@@ -68,7 +68,7 @@ def test(v, n, r):
             elapsed_time = tf - ti # tiempo de ejecucion)
             min_chacha20_enc[i] = min(min_chacha20_enc[i], elapsed_time) #Min por cada tamaño de vector
             
-            #Decifrado Chacha20 (message)
+            #Descifrado Chacha20 (message)
             ti = timeit.default_timer() # inicio
             decryptor = cipher_chacha20.decryptor()
             pt = decryptor.update(ct)
@@ -84,7 +84,7 @@ def test(v, n, r):
             elapsed_time = tf - ti # tiempo de ejecucion)
             min_ecb_enc[i] = min(min_ecb_enc[i], elapsed_time) #Min por cada tamaño de vector
 
-            #Decifrado AES-ECB
+            #Descifrado AES-ECB
             ti = timeit.default_timer() # inicio
             decryptor = cipher_aes_ecb.decryptor()
             pt = decryptor.update(ct)
@@ -100,7 +100,7 @@ def test(v, n, r):
             elapsed_time = tf - ti # tiempo de ejecucion)
             min_cbc_enc[i] = min(min_cbc_enc[i], elapsed_time) #Min por cada tamaño de vector
 
-            #Decifrado AES-CBC
+            #Descifrado AES-CBC
             ti = timeit.default_timer() # inicio
             decryptor = cipher_aes_cbc.decryptor()
             pt = decryptor.update(ct)
@@ -116,7 +116,7 @@ def test(v, n, r):
                 elapsed_time = tf - ti # tiempo de ejecucion)
                 min_oaep_enc[i] = min(min_oaep_enc[i], elapsed_time) #Min por cada tamaño de vector
             
-                #Decifrado RSA-OAEP (ciphertext)
+                #Descifrado RSA-OAEP (ciphertext)
                 ti = timeit.default_timer() # inicio
                 pt = private_key.decrypt(ct, padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
                 tf = timeit.default_timer()  # fin
@@ -168,7 +168,7 @@ plt.suptitle('Cifrado Chacha20 vs AES-ECB vs AES-CBC')
 plt.title('Tamaño de vectores de prueba 600 bytes')
 plt.show()
     
-#Gráfica de decifrado
+#Gráfica de descifrado
 plt.plot(n, resultados[1], 'r-', label='Chacha20')
 plt.plot(n, resultados[3], 'g-', label='AES-ECB')
 plt.plot(n, resultados[5], 'b-', label='AES-CBC')
@@ -180,7 +180,7 @@ plt.suptitle('Decifrado Chacha20 vs AES-ECB vs AES-CBC vs RSA-OAEP')
 plt.title('Tamaño de vectores de prueba 62 bytes')
 plt.show()
 
-#Gráfica de decifrado
+#Gráfica de descifrado
 plt.plot(n2, resultados2[1], 'r-', label='Chacha20')
 plt.plot(n2, resultados2[3], 'g-', label='AES-ECB')
 plt.plot(n2, resultados2[5], 'b-', label='AES-CBC')
